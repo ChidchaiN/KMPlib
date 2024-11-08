@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "com.github.ChidchaiN"
-version = "1.0.0"
+version = "1.0.3"
 
 publishing {
     repositories {
@@ -24,7 +24,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "com.github.ChidchaiN"
             artifactId = "composeApp"
-            version = "1.0.0"
+            version = "1.0.3"
             from(components["kotlin"])
         }
     }
