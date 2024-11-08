@@ -107,6 +107,8 @@ android {
 
 dependencies {
     implementation(libs.generativeai)
+    implementation(libs.play.services.cast)
+    implementation(libs.androidx.material3.android)
     debugImplementation(compose.uiTooling)
 }
 

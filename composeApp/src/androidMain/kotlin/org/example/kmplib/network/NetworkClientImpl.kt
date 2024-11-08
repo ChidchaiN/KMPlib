@@ -19,7 +19,7 @@ class KtorNetworkClient : NetworkClient {
     }
 
     override suspend fun sendRequest(requestData: RequestData): String {
-        val response = client.post("https://1l0z1syceg.execute-api.ap-southeast-1.amazonaws.com/uat/v1/gateway/v1/initial/register") {
+        val response = client.post("http://192.168.200.145:5000/insert-data") {
             contentType(ContentType.Application.Json)
             setBody(requestData)
         }
