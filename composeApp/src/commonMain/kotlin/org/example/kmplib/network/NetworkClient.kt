@@ -2,6 +2,6 @@ package org.example.kmplib.network
 
 import org.example.kmplib.models.RequestData
 
-expect class NetworkClient {
+interface NetworkClient {
     suspend fun sendRequest(requestData: RequestData): String
 }

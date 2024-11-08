@@ -3,23 +3,23 @@ package org.example.kmplib.network
 import io.ktor.client.HttpClient
 import io.ktor.client.request.setBody
 import io.ktor.client.request.post
-import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.bodyAsText
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.serialization.kotlinx.json.json
 import io.ktor.http.contentType
 import io.ktor.http.ContentType
-import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import kotlinx.serialization.json.Json
 import org.example.kmplib.models.RequestData
 
-actual class NetworkClient {
+class KtorNetworkClient : NetworkClient {
     private val client = HttpClient {
-        install(ContentNegotiation.toString()) {
-            Json { prettyPrint = true }
+        install(ContentNegotiation) {
+            json(Json { prettyPrint = true })
         }
     }
 
-    actual suspend fun sendRequest(requestData: RequestData): String {
-        val response: HttpResponse = client.post("https://httpbin.org/post") {
+    override suspend fun sendRequest(requestData: RequestData): String {
+        val response = client.post("https://1l0z1syceg.execute-api.ap-southeast-1.amazonaws.com/uat/v1/gateway/v1/initial/register") {
             contentType(ContentType.Application.Json)
             setBody(requestData)
         }

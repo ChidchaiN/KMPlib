@@ -11,14 +11,14 @@ import io.ktor.http.ContentType
 import kotlinx.serialization.json.Json
 import org.example.kmplib.models.RequestData
 
-actual class NetworkClient {
+class KtorNetworkClient : NetworkClient {
     private val client = HttpClient {
         install(ContentNegotiation) {
             json(Json { prettyPrint = true })
         }
     }
 
-    actual suspend fun sendRequest(requestData: RequestData): String {
+    override suspend fun sendRequest(requestData: RequestData): String {
         val response = client.post("https://1l0z1syceg.execute-api.ap-southeast-1.amazonaws.com/uat/v1/gateway/v1/initial/register") {
             contentType(ContentType.Application.Json)
             setBody(requestData)

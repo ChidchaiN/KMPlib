@@ -8,6 +8,26 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     kotlin("plugin.serialization") version "2.0.21"
+    id("maven-publish")
+}
+
+group = "com.github.ChidchaiN"
+version = "1.0.0"
+
+publishing {
+    repositories {
+        mavenCentral()
+        google()
+        maven("https://jitpack.io")
+    }
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "com.github.ChidchaiN"
+            artifactId = "composeApp"
+            version = "1.0.0"
+            from(components["kotlin"])
+        }
+    }
 }
 
 kotlin {
